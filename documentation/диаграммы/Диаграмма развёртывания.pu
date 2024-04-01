@@ -1,0 +1,27 @@
+@startuml Диаграмма развёртывания
+
+node "Мобильный телефон сотрудника ресторана" {
+    [Flutter Mobile Application]
+}
+
+
+
+cloud "Timeweb Cloud Сервер" {
+    package docker-compose {
+        [Nginx]
+        [Keycloak]
+        [Backend]
+        [Flutter Web Application]
+        database PostgreSQL
+    }
+}
+
+[Flutter Mobile Application] -- [Nginx] : https
+
+[Nginx] -- [Keycloak]
+[Nginx] -- [Backend]
+[Nginx] -- [Flutter Web Application]
+
+[Backend] -- [PostgreSQL]
+
+@enduml
